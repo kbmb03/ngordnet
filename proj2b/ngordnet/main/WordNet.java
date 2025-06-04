@@ -36,7 +36,7 @@ public class WordNet {
 
         List<String> words = q.words();
         ArrayList<ArrayList> hypos = new ArrayList<>();
-        //create list of ech worcs hyponyms
+        //create list of each words hyponyms
         //didn't  have any  hyponyms, then loop shouldnt have entered
 
         for (String word : words) {
@@ -53,26 +53,6 @@ public class WordNet {
         for (Integer j = 1; j < hypos.size(); j++) {
             comp.retainAll(hypos.get(j));
         }
-
-        //map the times each word occurs acroos eachof the words hyponyms
-
-//        for (ArrayList lst : hypos) {
-//            for (Integer i = 0; i < lst.size(); i++) {
-//                String currWord = (String) lst.get(i);
-//                if (occurs.containsKey(currWord)) {
-//                    Integer count = (Integer) occurs.get(currWord);
-//                    count += 1;
-//                    if (count == words.size()) {
-//                        res.add(currWord);
-//                    }
-//                    Integer countCopy = count;
-//                    occurs.put(currWord, countCopy);
-//                    count = 0;
-//                } else if (!(occurs.containsKey(currWord))) {
-//                    occurs.put(currWord, 1);
-//                }
-//            }
-//        }
 
         //check if each word is in all lists
         if (comp.isEmpty()) {
@@ -102,7 +82,6 @@ public class WordNet {
         ArrayList<String> reslist = new ArrayList<>();
         TimeSeries tsCopy = new TimeSeries();
         HashMap vals = new HashMap();
-        //String jj = "change";
         Integer end = q.endYear();
         ArrayList<String> words = graph.StringToList(GetHypos(wordlist.get(0)));
         if (wordlist.size() > 1) {
@@ -115,8 +94,6 @@ public class WordNet {
 
         for (Integer i = 0; i < words.size(); i++) {
             String word = words.get(i);
-            //getting error here
-            System.out.println(word);
             ts = ngmap.countHistory(word, start, end);
             tsCopy = ts;
             List<Double> counts = tsCopy.data();
